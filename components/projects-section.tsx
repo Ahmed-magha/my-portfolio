@@ -15,8 +15,8 @@ const projects = [
     title: "Virtual Assistant (BC-Skills BOT)",
     description: "AI-powered chatbot with deep learning capabilities for skill assessment and career guidance.",
     shortDesc: "AI chatbot for skill assessment",
-    image: "/ai-chatbot-interface.png",
-    images: ["/ai-chatbot-dashboard.png", "/chatbot-conversation-flow.png", "/placeholder-tlmlz.png"],
+    image: "/projects images/bcskills1.png",
+    images: ["/projects images/bcskills1.png", "/projects images/bcskills2.png"],
     tech: ["Python", "TensorFlow", "NLP", "Flask", "React"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -30,8 +30,15 @@ const projects = [
     title: "Agricultural Decision Support Tool",
     description: "Machine learning system for OCP Group to optimize agricultural decisions and crop management.",
     shortDesc: "ML system for crop optimization",
-    image: "/agricultural-dashboard.png",
-    images: ["/agricultural-dashboard-interface.png", "/crop-prediction-analytics.png", "/placeholder-bufvo.png"],
+    image: "/projects images/agro1.png",
+    images: [
+      "/projects images/agro1.png",
+      "/projects images/agro2.png",
+      "/projects images/agro3.png",
+      "/projects images/agro4.png",
+      "/projects images/agro5.png",
+      "/projects images/agro6.png",
+    ],
     tech: ["Python", "Scikit-learn", "Pandas", "Django", "PostgreSQL"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -45,8 +52,15 @@ const projects = [
     title: "COVID Detection Tool",
     description: "Medical AI application for COVID-19 detection using chest X-ray analysis with computer vision.",
     shortDesc: "AI-powered COVID detection",
-    image: "/medical-ai-covid-interface.png",
-    images: ["/covid-detection-dashboard.png", "/placeholder-bkv68.png", "/detection-results-visualization.png"],
+    image: "/projects images/covid1.png",
+    images: [
+      "/projects images/covid1.png",
+      "/projects images/covid2.png",
+      "/projects images/covid3.png",
+      "/projects images/covid4.png",
+      "/projects images/covid5.png",
+      "/projects images/covid6.png",
+    ],
     tech: ["Python", "PyTorch", "OpenCV", "FastAPI", "Docker"],
     github: "https://github.com",
     demo: "https://demo.com",
@@ -86,11 +100,14 @@ const projects = [
     title: "QuantCompass",
     description: "AI-powered portfolio optimization dashboard for algorithmic trading and investment strategies.",
     shortDesc: "AI portfolio optimization",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/projects images/quant1.png",
     images: [
-      "/placeholder.svg?height=600&width=800",
-      "/placeholder.svg?height=600&width=800",
-      "/placeholder.svg?height=600&width=800",
+      "/projects images/quant1.png",
+      "/projects images/quant2.png",
+      "/projects images/quant3.png",
+      "/projects images/quant4.png",
+      "/projects images/quant5.png",
+      "/projects images/quant6.png",
     ],
     tech: ["Python", "TensorFlow", "Pandas", "React", "D3.js"],
     github: "https://github.com",
@@ -105,11 +122,15 @@ const projects = [
     title: "Check Data Extraction System",
     description: "OCR and LLM-powered banking solution for automated check processing and data extraction.",
     shortDesc: "OCR banking solution",
-    image: "/placeholder.svg?height=300&width=400",
+    image: "/projects images/cheque1.png",
     images: [
-      "/placeholder.svg?height=600&width=800",
-      "/placeholder.svg?height=600&width=800",
-      "/placeholder.svg?height=600&width=800",
+      "/projects images/cheque1.png",
+      "/projects images/cheque2.png",
+      "/projects images/cheque3.png",
+      "/projects images/cheque4.png",
+      "/projects images/cheque5.png",
+      "/projects images/cheque6.png",
+      "/projects images/cheque7.png",
     ],
     tech: ["Python", "OCR", "OpenAI", "FastAPI", "PostgreSQL"],
     github: "https://github.com",
@@ -126,16 +147,16 @@ function AnimatedProjectCard({ project, index, isInView, onClick }: any) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [isHovered, setIsHovered] = useState(false)
 
-  // Auto-cycle through images for cardio project
+  // Auto-cycle through images for all projects that have multiple images
   useEffect(() => {
-    if (project.id === 4 && project.images.length > 1) {
+    if (project.images.length > 1) {
       const interval = setInterval(() => {
         setCurrentImageIndex((prev) => (prev + 1) % project.images.length)
       }, 3000) // Change image every 3 seconds
 
       return () => clearInterval(interval)
     }
-  }, [project.id, project.images.length])
+  }, [project.images.length])
 
   return (
     <motion.div
@@ -149,8 +170,8 @@ function AnimatedProjectCard({ project, index, isInView, onClick }: any) {
       onClick={onClick}
     >
       <div className="relative overflow-hidden">
-        {project.id === 4 ? (
-          // Animated slideshow for IoT Medical Monitoring project
+        {project.images.length > 1 ? (
+          // Animated slideshow for projects with multiple images
           <div className="relative w-full h-48 bg-[#0d2818]">
             <AnimatePresence mode="wait">
               <motion.img
@@ -198,20 +219,13 @@ function AnimatedProjectCard({ project, index, isInView, onClick }: any) {
               </motion.div>
             </motion.div>
           </div>
-        ) : project.image.includes("cardio-desk 6.png") ? (
-          // Static image for other cardio projects
+        ) : (
+          // Static image for projects with single image
           <img
             src={project.image || "/placeholder.svg"}
             alt={project.title}
             className="w-full h-48 object-contain bg-[#0d2818] group-hover:scale-105 transition-transform duration-300"
           />
-        ) : (
-          // Gradient placeholder for projects without images
-          <div className="w-full h-48 bg-gradient-to-br from-[#0d2818] to-[#1a4d3a] flex items-center justify-center group-hover:from-[#1a4d3a] group-hover:to-[#2d6b4f] transition-all duration-300">
-            <div className="text-4xl text-[#2d6b4f] group-hover:text-white transition-colors duration-300">
-              {project.tech[0].charAt(0)}
-            </div>
-          </div>
         )}
 
         {/* Overlay gradient */}
@@ -369,46 +383,44 @@ export default function ProjectsSection() {
 
               {/* Image Slider */}
               <div className="relative h-64 md:h-80 overflow-hidden rounded-t-2xl">
-                {selectedProject.images[currentImageIndex].includes("cardio") ? (
-                  <img
-                    src={selectedProject.images[currentImageIndex] || "/placeholder.svg"}
-                    alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
-                    className="w-full h-full object-contain bg-[#0d2818]"
-                  />
-                ) : (
-                  <div className="w-full h-full bg-gradient-to-br from-[#0d2818] to-[#1a4d3a] flex items-center justify-center">
-                    <div className="text-6xl text-[#2d6b4f]">{selectedProject.tech[0].charAt(0)}</div>
-                  </div>
-                )}
+                <img
+                  src={selectedProject.images[currentImageIndex] || "/placeholder.svg"}
+                  alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
+                  className="w-full h-full object-contain bg-[#0d2818]"
+                />
 
-                <button
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
-                  onClick={prevImage}
-                  type="button"
-                >
-                  <ChevronLeft className="h-6 w-6 text-white" />
-                </button>
-
-                <button
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
-                  onClick={nextImage}
-                  type="button"
-                >
-                  <ChevronRight className="h-6 w-6 text-white" />
-                </button>
-
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                  {selectedProject.images.map((_, index) => (
+                {selectedProject.images.length > 1 && (
+                  <>
                     <button
-                      key={index}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        index === currentImageIndex ? "bg-[#2d6b4f]" : "bg-white/50"
-                      }`}
-                      onClick={() => setCurrentImageIndex(index)}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+                      onClick={prevImage}
                       type="button"
-                    />
-                  ))}
-                </div>
+                    >
+                      <ChevronLeft className="h-6 w-6 text-white" />
+                    </button>
+
+                    <button
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
+                      onClick={nextImage}
+                      type="button"
+                    >
+                      <ChevronRight className="h-6 w-6 text-white" />
+                    </button>
+
+                    <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
+                      {selectedProject.images.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`w-2 h-2 rounded-full transition-colors ${
+                            index === currentImageIndex ? "bg-[#2d6b4f]" : "bg-white/50"
+                          }`}
+                          onClick={() => setCurrentImageIndex(index)}
+                          type="button"
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
 
               <div className="p-8">
