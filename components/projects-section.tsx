@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef } from "react"
-import { ExternalLink, Github, X, ChevronLeft, ChevronRight } from "lucide-react"
+import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
@@ -238,7 +238,7 @@ function AnimatedProjectCard({ project, index, isInView, onClick }: any) {
         </h3>
         <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.shortDesc}</p>
 
-        <div className="flex flex-wrap gap-2 mb-4">
+        <div className="flex flex-wrap gap-2">
           {project.tech.slice(0, 3).map((tech: string) => (
             <Badge
               key={tech}
@@ -253,32 +253,6 @@ function AnimatedProjectCard({ project, index, isInView, onClick }: any) {
               +{project.tech.length - 3}
             </Badge>
           )}
-        </div>
-
-        <div className="flex gap-2">
-          <Button
-            size="sm"
-            variant="outline"
-            className="border-[#2d6b4f]/50 text-[#2d6b4f] hover:bg-[#2d6b4f]/10 flex-1 bg-transparent"
-            onClick={(e) => {
-              e.stopPropagation()
-              window.open(project.github, "_blank")
-            }}
-          >
-            <Github className="h-4 w-4 mr-1" />
-            Code
-          </Button>
-          <Button
-            size="sm"
-            className="bg-[#2d6b4f] hover:bg-[#4a8b6b] flex-1"
-            onClick={(e) => {
-              e.stopPropagation()
-              window.open(project.demo, "_blank")
-            }}
-          >
-            <ExternalLink className="h-4 w-4 mr-1" />
-            Demo
-          </Button>
         </div>
       </div>
     </motion.div>
@@ -351,6 +325,25 @@ export default function ProjectsSection() {
             />
           ))}
         </div>
+
+        {/* Single Contact for Code button at the end of the section */}
+        <motion.div
+          className="flex justify-center mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <Button
+            size="lg"
+            className="bg-gradient-to-r from-[#1a4d3a] to-[#2d6b4f] hover:from-[#2d6b4f] hover:to-[#4a8b6b] text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+            onClick={() => {
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+            }}
+          >
+            <Mail className="h-5 w-5 mr-2" />
+            Contact for Code
+          </Button>
+        </motion.div>
       </motion.div>
 
       {/* Project Modal */}
