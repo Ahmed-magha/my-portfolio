@@ -8,6 +8,12 @@
     "lint": "next lint",
     "start": "next start"
   },
+  "overrides": {
+    "vaul": {
+      "react": "$react",
+      "react-dom": "$react-dom"
+    }
+  },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
     "@hookform/resolvers": "^3.10.0",
@@ -67,7 +73,6 @@
     "tailwind-merge": "^2.5.5",
     "tailwindcss-animate": "^1.0.7",
     "three": "latest",
-    "vaul": "^0.9.9",
     "zod": "3.25.67"
   },
   "devDependencies": {
