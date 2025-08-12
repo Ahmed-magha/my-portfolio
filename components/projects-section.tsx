@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef } from "react"
 import { ExternalLink, Github, X, ChevronLeft, ChevronRight } from "lucide-react"
@@ -121,6 +121,156 @@ const projects = [
   },
 ]
 
+// Animated Project Card Component
+function AnimatedProjectCard({ project, index, isInView, onClick }: any) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+
+  // Auto-cycle through images for cardio project
+  useEffect(() => {
+    if (project.id === 4 && project.images.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prev) => (prev + 1) % project.images.length)
+      }, 3000) // Change image every 3 seconds
+
+      return () => clearInterval(interval)
+    }
+  }, [project.id, project.images.length])
+
+  return (
+    <motion.div
+      className="bg-[#0d2818]/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-[#1a4d3a]/50 hover:border-[#2d6b4f]/50 transition-all duration-300 cursor-pointer group"
+      initial={{ y: 50, opacity: 0 }}
+      animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      onClick={onClick}
+    >
+      <div className="relative overflow-hidden">
+        {project.id === 4 ? (
+          // Animated slideshow for IoT Medical Monitoring project
+          <div className="relative w-full h-48 bg-[#0d2818]">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentImageIndex}
+                src={project.images[currentImageIndex] || "/placeholder.svg"}
+                alt={project.title}
+                className="w-full h-full object-contain absolute inset-0"
+                initial={{ opacity: 0, scale: 1.1 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.8, ease: "easeInOut" }}
+              />
+            </AnimatePresence>
+
+            {/* Image indicators */}
+            <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 flex gap-1 z-10">
+              {project.images.map((_: any, idx: number) => (
+                <motion.div
+                  key={idx}
+                  className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                    idx === currentImageIndex ? "bg-[#2d6b4f] scale-125" : "bg-white/40"
+                  }`}
+                  animate={{
+                    scale: idx === currentImageIndex ? 1.25 : 1,
+                    opacity: idx === currentImageIndex ? 1 : 0.6,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Hover overlay with navigation hints */}
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-t from-[#020202]/90 via-transparent to-transparent flex items-end justify-center pb-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isHovered ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
+            >
+              <motion.div
+                className="text-white text-sm font-medium bg-[#2d6b4f]/80 px-3 py-1 rounded-full backdrop-blur-sm"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: isHovered ? 0 : 20, opacity: isHovered ? 1 : 0 }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+              >
+                Click to view gallery
+              </motion.div>
+            </motion.div>
+          </div>
+        ) : project.image.includes("cardio-desk 6.png") ? (
+          // Static image for other cardio projects
+          <img
+            src={project.image || "/placeholder.svg"}
+            alt={project.title}
+            className="w-full h-48 object-contain bg-[#0d2818] group-hover:scale-105 transition-transform duration-300"
+          />
+        ) : (
+          // Gradient placeholder for projects without images
+          <div className="w-full h-48 bg-gradient-to-br from-[#0d2818] to-[#1a4d3a] flex items-center justify-center group-hover:from-[#1a4d3a] group-hover:to-[#2d6b4f] transition-all duration-300">
+            <div className="text-4xl text-[#2d6b4f] group-hover:text-white transition-colors duration-300">
+              {project.tech[0].charAt(0)}
+            </div>
+          </div>
+        )}
+
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#020202]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+      </div>
+
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#2d6b4f] transition-colors duration-200">
+          {project.title}
+        </h3>
+        <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.shortDesc}</p>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          {project.tech.slice(0, 3).map((tech: string) => (
+            <Badge
+              key={tech}
+              variant="secondary"
+              className="bg-[#0a1f14] text-[#2d6b4f] border border-[#2d6b4f]/30 text-xs"
+            >
+              {tech}
+            </Badge>
+          ))}
+          {project.tech.length > 3 && (
+            <Badge variant="secondary" className="bg-[#0a1f14] text-gray-400 border border-gray-400/30 text-xs">
+              +{project.tech.length - 3}
+            </Badge>
+          )}
+        </div>
+
+        <div className="flex gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            className="border-[#2d6b4f]/50 text-[#2d6b4f] hover:bg-[#2d6b4f]/10 flex-1 bg-transparent"
+            onClick={(e) => {
+              e.stopPropagation()
+              window.open(project.github, "_blank")
+            }}
+          >
+            <Github className="h-4 w-4 mr-1" />
+            Code
+          </Button>
+          <Button
+            size="sm"
+            className="bg-[#2d6b4f] hover:bg-[#4a8b6b] flex-1"
+            onClick={(e) => {
+              e.stopPropagation()
+              window.open(project.demo, "_blank")
+            }}
+          >
+            <ExternalLink className="h-4 w-4 mr-1" />
+            Demo
+          </Button>
+        </div>
+      </div>
+    </motion.div>
+  )
+}
+
 export default function ProjectsSection() {
   const [selectedProject, setSelectedProject] = useState<(typeof projects)[0] | null>(null)
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -175,85 +325,16 @@ export default function ProjectsSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.div
+            <AnimatedProjectCard
               key={project.id}
-              className="bg-[#0d2818]/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-[#1a4d3a]/50 hover:border-[#2d6b4f]/50 transition-all duration-300 cursor-pointer group"
-              initial={{ y: 50, opacity: 0 }}
-              animate={isInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ scale: 1.02, transition: { duration: 0.2 } }}
+              project={project}
+              index={index}
+              isInView={isInView}
               onClick={() => {
                 setSelectedProject(project)
                 setCurrentImageIndex(0)
               }}
-            >
-              <div className="relative overflow-hidden">
-                {project.image.includes("cardio-desk 6.png") ? (
-                  <img
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    className="w-full h-48 object-contain bg-[#0d2818] group-hover:scale-105 transition-transform duration-300"
-                  />
-                ) : (
-                  <div className="w-full h-48 bg-gradient-to-br from-[#0d2818] to-[#1a4d3a] flex items-center justify-center group-hover:from-[#1a4d3a] group-hover:to-[#2d6b4f] transition-all duration-300">
-                    <div className="text-4xl text-[#2d6b4f] group-hover:text-white transition-colors duration-300">
-                      {project.tech[0].charAt(0)}
-                    </div>
-                  </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#020202]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-[#2d6b4f] transition-colors duration-200">
-                  {project.title}
-                </h3>
-                <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.shortDesc}</p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.slice(0, 3).map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="secondary"
-                      className="bg-[#0a1f14] text-[#2d6b4f] border border-[#2d6b4f]/30 text-xs"
-                    >
-                      {tech}
-                    </Badge>
-                  ))}
-                  {project.tech.length > 3 && (
-                    <Badge variant="secondary" className="bg-[#0a1f14] text-gray-400 border border-gray-400/30 text-xs">
-                      +{project.tech.length - 3}
-                    </Badge>
-                  )}
-                </div>
-
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="border-[#2d6b4f]/50 text-[#2d6b4f] hover:bg-[#2d6b4f]/10 flex-1 bg-transparent"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      window.open(project.github, "_blank")
-                    }}
-                  >
-                    <Github className="h-4 w-4 mr-1" />
-                    Code
-                  </Button>
-                  <Button
-                    size="sm"
-                    className="bg-[#2d6b4f] hover:bg-[#4a8b6b] flex-1"
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      window.open(project.demo, "_blank")
-                    }}
-                  >
-                    <ExternalLink className="h-4 w-4 mr-1" />
-                    Demo
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
+            />
           ))}
         </div>
       </motion.div>
