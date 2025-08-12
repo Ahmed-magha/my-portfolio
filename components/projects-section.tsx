@@ -5,7 +5,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef } from "react"
-import { ExternalLink, Github, X, ChevronLeft, ChevronRight, Mail } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, Mail } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
@@ -445,23 +445,6 @@ export default function ProjectsSection() {
                       </Badge>
                     ))}
                   </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <Button
-                    className="bg-[#0d2818] hover:bg-[#1a4d3a] text-white border border-[#1a4d3a]"
-                    onClick={() => window.open(selectedProject.github, "_blank")}
-                  >
-                    <Github className="h-5 w-5 mr-2" />
-                    View Code
-                  </Button>
-                  <Button
-                    className="bg-[#2d6b4f] hover:bg-[#4a8b6b] text-white"
-                    onClick={() => window.open(selectedProject.demo, "_blank")}
-                  >
-                    <ExternalLink className="h-5 w-5 mr-2" />
-                    Live Demo
-                  </Button>
                 </div>
               </div>
             </motion.div>
