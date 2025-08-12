@@ -74,8 +74,8 @@ export default function ExperienceSection() {
         </motion.h2>
 
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#2d6b4f] via-[#4a8b6b] to-[#66a582]"></div>
+          {/* Timeline Line - Hidden on mobile, visible on desktop */}
+          <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#2d6b4f] via-[#4a8b6b] to-[#66a582] hidden md:block"></div>
 
           <div className="space-y-12">
             {experiences.map((experience, index) => (
@@ -88,11 +88,11 @@ export default function ExperienceSection() {
                 animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
               >
-                {/* Timeline Dot */}
-                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-[#2d6b4f] rounded-full border-4 border-[#020202] z-10"></div>
+                {/* Timeline Dot - Hidden on mobile, visible on desktop */}
+                <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-[#2d6b4f] rounded-full border-4 border-[#020202] z-10 hidden md:block"></div>
 
-                {/* Content Card */}
-                <div className={`w-full md:w-5/12 ml-16 md:ml-0`}>
+                {/* Content Card - Full width on mobile, half width on desktop */}
+                <div className={`w-full md:w-5/12 ${index % 2 !== 0 ? "md:ml-0" : "md:ml-0"}`}>
                   <motion.div
                     className="bg-[#0d2818]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#1a4d3a]/50 hover:border-[#2d6b4f]/50 transition-all duration-300"
                     whileHover={{ scale: 1.02 }}
@@ -159,7 +159,7 @@ export default function ExperienceSection() {
                   </motion.div>
                 </div>
 
-                {/* Spacer for the other side */}
+                {/* Spacer for the other side - Hidden on mobile, visible on desktop */}
                 <div className="hidden md:block w-5/12"></div>
               </motion.div>
             ))}

@@ -307,7 +307,7 @@ export default function Navigation() {
       <AnimatePresence>
         {showVerticalNav && (
           <motion.div
-            className="fixed right-4 top-1/2 transform -translate-y-1/2 z-40 md:hidden"
+            className="fixed right-4 top-1/2 transform -translate-y-1/2 z-40 hidden"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 50 }}
