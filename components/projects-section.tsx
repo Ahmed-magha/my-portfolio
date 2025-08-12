@@ -17,13 +17,13 @@ const projects = [
     shortDesc: "AI chatbot for skill assessment",
     image: "/projects images/bcskills1.png",
     images: ["/projects images/bcskills1.png", "/projects images/bcskills2.png"],
-    tech: ["Python", "TensorFlow", "NLP", "Flask", "React"],
+    tech: ["Python", "pytorch", "NLP", "Flask", "React"],
     github: "https://github.com",
     demo: "https://demo.com",
     details:
       "Developed an intelligent virtual assistant that helps users assess their skills and provides personalized career guidance. The system uses advanced NLP techniques and machine learning algorithms to understand user queries and provide relevant responses.",
-    timeline: "3 months",
-    team: "4 members",
+    timeline: "1 months",
+    team: "2 members",
   },
   {
     id: 2,
@@ -39,13 +39,13 @@ const projects = [
       "/projects images/agro5.png",
       "/projects images/agro6.png",
     ],
-    tech: ["Python", "Scikit-learn", "Pandas", "Django", "PostgreSQL"],
+    tech: ["Python", "Scikit-learn", "Pandas", "Flask", "react", "Neural Networks"],
     github: "https://github.com",
     demo: "https://demo.com",
     details:
       "Built a comprehensive decision support system for agricultural optimization, incorporating weather data, soil conditions, and historical crop performance to provide actionable insights for farmers and agricultural companies.",
-    timeline: "4 months",
-    team: "5 members",
+    timeline: "2 months",
+    team: "2 members",
   },
   {
     id: 3,
@@ -61,7 +61,7 @@ const projects = [
       "/projects images/covid5.png",
       "/projects images/covid6.png",
     ],
-    tech: ["Python", "PyTorch", "OpenCV", "FastAPI", "Docker"],
+    tech: ["Python", "PyTorch", "OpenCV", "Flask", "Deep Learning"],
     github: "https://github.com",
     demo: "https://demo.com",
     details:
@@ -87,13 +87,13 @@ const projects = [
       "/projects images/cardio-mob 2.png",
       "/projects images/cardio-mob 3.png",
     ],
-    tech: ["Python", "IoT", "MongoDB", "React", "Node.js"],
+    tech: ["Python", "IoT", "Machine learning", "React", "AWS services"],
     github: "https://github.com",
     demo: "https://demo.com",
     details:
       "Created an IoT-based medical monitoring system that tracks patient vital signs in real-time, with predictive analytics to alert healthcare providers of potential health issues before they become critical.",
-    timeline: "5 months",
-    team: "6 members",
+    timeline: "2 months",
+    team: "3 members",
   },
   {
     id: 5,
@@ -109,13 +109,13 @@ const projects = [
       "/projects images/quant5.png",
       "/projects images/quant6.png",
     ],
-    tech: ["Python", "TensorFlow", "Pandas", "React", "D3.js"],
+    tech: ["Python", "TensorFlow", "Pandas", "React", "D3.js", "Machine learning"],
     github: "https://github.com",
     demo: "https://demo.com",
     details:
       "Built an intelligent portfolio optimization system that uses machine learning algorithms to analyze market trends and optimize investment strategies for maximum returns while minimizing risk.",
-    timeline: "4 months",
-    team: "4 members",
+    timeline: "3 months",
+    team: "1 member",
   },
   {
     id: 6,
@@ -137,8 +137,8 @@ const projects = [
     demo: "https://demo.com",
     details:
       "Developed an automated check processing system that uses OCR technology and large language models to extract and validate banking information from check images, significantly reducing manual processing time.",
-    timeline: "3 months",
-    team: "3 members",
+    timeline: "2 months",
+    team: "1 member",
   },
 ]
 
