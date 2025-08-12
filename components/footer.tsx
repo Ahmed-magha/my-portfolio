@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Github, Linkedin, Download, ExternalLink } from "lucide-react"
+import { Mail, Phone, MapPin, Github, Linkedin, Download } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Footer() {
@@ -139,24 +139,6 @@ export default function Footer() {
                 >
                   <Download className="mr-2 h-5 w-5" />
                   Download PDF Resume
-                </Button>
-              </motion.div>
-
-              <motion.div
-                className="p-6 bg-[#0d2818]/50 rounded-lg border border-[#1a4d3a]/50"
-                whileHover={{ scale: 1.02 }}
-              >
-                <h4 className="text-lg font-semibold text-white mb-2">View Online Resume</h4>
-                <p className="text-gray-400 mb-4">
-                  Browse my interactive online resume with detailed project descriptions and live links.
-                </p>
-                <Button
-                  variant="outline"
-                  className="w-full border-[#2d6b4f]/50 text-[#2d6b4f] hover:bg-[#2d6b4f]/10 bg-transparent"
-                  onClick={() => window.open("/resume", "_blank")}
-                >
-                  <ExternalLink className="mr-2 h-5 w-5" />
-                  View Online Resume
                 </Button>
               </motion.div>
 
