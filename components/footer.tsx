@@ -43,7 +43,7 @@ export default function Footer() {
                 <Mail className="h-6 w-6 text-[#2d6b4f]" />
                 <div>
                   <p className="text-gray-400 text-sm">Email</p>
-                  <p className="text-white font-medium">ahmed.magha@example.com</p>
+                  <p className="text-white font-medium">ahmedmagha0@gmail.com</p>
                 </div>
               </motion.div>
 
@@ -54,7 +54,7 @@ export default function Footer() {
                 <Phone className="h-6 w-6 text-[#2d6b4f]" />
                 <div>
                   <p className="text-gray-400 text-sm">Phone</p>
-                  <p className="text-white font-medium">+212 XXX XXX XXX</p>
+                  <p className="text-white font-medium">+212 6 55 43 13 10</p>
                 </div>
               </motion.div>
 
@@ -75,7 +75,7 @@ export default function Footer() {
               <h4 className="text-lg font-semibold text-[#2d6b4f] mb-4">Connect With Me</h4>
               <div className="flex gap-4">
                 <motion.a
-                  href="https://github.com"
+                  href="https://github.com/Ahmed-magha"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-[#0d2818] hover:bg-[#1a4d3a] rounded-lg border border-[#1a4d3a] hover:border-[#2d6b4f]/50 transition-all duration-300"
@@ -86,7 +86,7 @@ export default function Footer() {
                 </motion.a>
 
                 <motion.a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BgW4arJxwRuaTK03OQ16m%2Bg%3D%3D"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-[#0d2818] hover:bg-[#1a4d3a] rounded-lg border border-[#1a4d3a] hover:border-[#2d6b4f]/50 transition-all duration-300"
@@ -97,7 +97,7 @@ export default function Footer() {
                 </motion.a>
 
                 <motion.a
-                  href="mailto:ahmed.magha@example.com"
+                  href="mailto:ahmedmagha0@gmail.com"
                   className="p-3 bg-[#0d2818] hover:bg-[#1a4d3a] rounded-lg border border-[#1a4d3a] hover:border-[#2d6b4f]/50 transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -171,7 +171,7 @@ export default function Footer() {
                 <Button
                   className="w-full bg-[#2d6b4f] hover:bg-[#4a8b6b] text-white"
                   onClick={() =>
-                    (window.location.href = "mailto:ahmed.magha@example.com?subject=Collaboration Opportunity")
+                    (window.location.href = "mailto:ahmedmagha0@gmail.com?subject=Collaboration Opportunity")
                   }
                 >
                   <Mail className="mr-2 h-5 w-5" />
