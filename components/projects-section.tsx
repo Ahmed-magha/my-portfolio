@@ -60,11 +60,18 @@ const projects = [
     title: "IoT Medical Monitoring",
     description: "Real-time health tracking system with IoT sensors and predictive analytics for patient monitoring.",
     shortDesc: "IoT health monitoring system",
-    image: "public/projects images/cardio-desk 6.png",
+    image: "/projects images/cardio-desk 6.png",
     images: [
       "/projects images/cardio-desk 1.png",
       "/projects images/cardio-desk 2.png",
       "/projects images/cardio-desk 3.png",
+      "/projects images/cardio-desk 4.png",
+      "/projects images/cardio-desk 5.png",
+      "/projects images/cardio-desk 6.png",
+      "/projects images/cardio-desk 7.png",
+      "/projects images/cardio-mob 1.png",
+      "/projects images/cardio-mob 2.png",
+      "/projects images/cardio-mob 3.png",
     ],
     tech: ["Python", "IoT", "MongoDB", "React", "Node.js"],
     github: "https://github.com",
@@ -181,11 +188,19 @@ export default function ProjectsSection() {
               }}
             >
               <div className="relative overflow-hidden">
-                <div className="w-full h-48 bg-gradient-to-br from-[#0d2818] to-[#1a4d3a] flex items-center justify-center group-hover:from-[#1a4d3a] group-hover:to-[#2d6b4f] transition-all duration-300">
-                  <div className="text-4xl text-[#2d6b4f] group-hover:text-white transition-colors duration-300">
-                    {project.tech[0].charAt(0)}
+                {project.image.includes("cardio-desk 6.png") ? (
+                  <img
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.title}
+                    className="w-full h-48 object-contain bg-[#0d2818] group-hover:scale-105 transition-transform duration-300"
+                  />
+                ) : (
+                  <div className="w-full h-48 bg-gradient-to-br from-[#0d2818] to-[#1a4d3a] flex items-center justify-center group-hover:from-[#1a4d3a] group-hover:to-[#2d6b4f] transition-all duration-300">
+                    <div className="text-4xl text-[#2d6b4f] group-hover:text-white transition-colors duration-300">
+                      {project.tech[0].charAt(0)}
+                    </div>
                   </div>
-                </div>
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#020202]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
 
@@ -273,9 +288,17 @@ export default function ProjectsSection() {
 
               {/* Image Slider */}
               <div className="relative h-64 md:h-80 overflow-hidden rounded-t-2xl">
-                <div className="w-full h-full bg-gradient-to-br from-[#0d2818] to-[#1a4d3a] flex items-center justify-center">
-                  <div className="text-6xl text-[#2d6b4f]">{selectedProject.tech[0].charAt(0)}</div>
-                </div>
+                {selectedProject.images[currentImageIndex].includes("cardio") ? (
+                  <img
+                    src={selectedProject.images[currentImageIndex] || "/placeholder.svg"}
+                    alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
+                    className="w-full h-full object-contain bg-[#0d2818]"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gradient-to-br from-[#0d2818] to-[#1a4d3a] flex items-center justify-center">
+                    <div className="text-6xl text-[#2d6b4f]">{selectedProject.tech[0].charAt(0)}</div>
+                  </div>
+                )}
 
                 <button
                   className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
