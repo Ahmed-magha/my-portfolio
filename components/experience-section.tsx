@@ -7,36 +7,6 @@ import { Calendar, MapPin, Award } from "lucide-react"
 const experiences = [
   {
     id: 1,
-    title: "BC-Skills BOT Developer Intern",
-    company: "BC-Skills Company",
-    location: "Morocco",
-    period: "2024",
-    description:
-      "Gained hands-on experience in conversational AI by designing and developing an intelligent chatbot from scratch, integrating deep learning models to enhance interaction quality and user engagement.",
-    achievements: [
-      "Designed and implemented the chatbot architecture, integrating NLP models for context-aware responses",
-      "Improved conversation flow and engagement through continuous model fine-tuning",
-      "Delivered a fully functional virtual assistant deployed for internal use",
-    ],
-    logo: "/logos/BCskills logo.png",
-  },
-  {
-    id: 2,
-    title: "Agricultural Decision Support Developer Intern",
-    company: "OCP Group",
-    location: "Morocco",
-    period: "2024",
-    description:
-      "Applied data science and computer vision techniques to analyze soil data and plant images, providing personalized recommendations to optimize fertilization strategies and improve crop disease management.",
-    achievements: [
-      "Processed and analyzed multi-source agricultural datasets for actionable insights",
-      "Developed an ML model to detect plant diseases from images with high accuracy",
-      "Delivered a decision support tool enabling real-time recommendations for farmers",
-    ],
-    logo: "/logos/OCP groupe.png",
-  },
-  {
-    id: 3,
     title: "OCR & Multimodal AI Engineer Intern",
     company: "Attijariwafa Bank",
     location: "Morocco",
@@ -48,7 +18,37 @@ const experiences = [
       "Applied quantization techniques to reduce inference time on mid-resource devices",
       "Achieved high accuracy in extracting structured data from noisy cheque images",
     ],
-    logo: "/logos/attiijari logo.png",
+    logo: "/logos/attijari logo.png",
+  },
+  {
+    id: 2,
+    title: "Agricultural AI & Computer Vision Intern",
+    company: "OCP Group",
+    location: "Morocco",
+    period: "2024",
+    description:
+      "Applied data science and computer vision techniques to analyze soil data and plant images, providing personalized recommendations to optimize fertilization strategies and improve crop disease management.",
+    achievements: [
+      "Processed and analyzed multi-source agricultural datasets for actionable insights",
+      "Developed an ML model to detect plant diseases from images with high accuracy",
+      "Delivered a decision support tool enabling real-time recommendations for farmers",
+    ],
+    logo: "/logos/OCP_Group.png",
+  },
+  {
+    id: 3,
+    title: "BC-Skills NLP Chatbot Developer Intern",
+    company: "BC-Skills Company",
+    location: "Morocco",
+    period: "2024",
+    description:
+      "Gained hands-on experience in conversational AI by designing and developing an intelligent chatbot from scratch, integrating deep learning models to enhance interaction quality and user engagement.",
+    achievements: [
+      "Designed and implemented the chatbot architecture, integrating NLP models for context-aware responses",
+      "Improved conversation flow and engagement through continuous model fine-tuning",
+      "Delivered a fully functional virtual assistant deployed for internal use",
+    ],
+    logo: "/logos/BCskills logo.png",
   },
 ]
 
