@@ -1,5 +1,7 @@
 "use client"
 
+import type React from "react"
+
 import { useState } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef } from "react"
@@ -130,6 +132,23 @@ export default function ProjectsSection() {
     }
   }
 
+  const closeModal = () => {
+    setSelectedProject(null)
+    setCurrentImageIndex(0)
+  }
+
+  const handleModalClick = (e: React.MouseEvent) => {
+    // Close modal if clicking on the backdrop
+    if (e.target === e.currentTarget) {
+      closeModal()
+    }
+  }
+
+  const handleContentClick = (e: React.MouseEvent) => {
+    // Prevent modal from closing when clicking on content
+    e.stopPropagation()
+  }
+
   return (
     <section id="projects" className="py-20 px-4 max-w-7xl mx-auto">
       <motion.div
@@ -232,7 +251,7 @@ export default function ProjectsSection() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelectedProject(null)}
+            onClick={handleModalClick}
           >
             <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
@@ -241,13 +260,15 @@ export default function ProjectsSection() {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.8, opacity: 0 }}
-              onClick={(e) => e.stopPropagation()}
+              onClick={handleContentClick}
             >
+              {/* Close Button */}
               <button
-                className="absolute top-4 right-4 z-10 p-2 bg-[#0d2818] rounded-full hover:bg-[#1a4d3a] transition-colors"
-                onClick={() => setSelectedProject(null)}
+                className="absolute top-4 right-4 z-20 p-2 bg-[#0d2818] rounded-full hover:bg-[#1a4d3a] transition-colors border border-[#2d6b4f]/30 hover:border-[#2d6b4f]/50"
+                onClick={closeModal}
+                type="button"
               >
-                <X className="h-6 w-6 text-white" />
+                <X className="h-6 w-6 text-white hover:text-[#2d6b4f] transition-colors" />
               </button>
 
               {/* Image Slider */}
@@ -259,6 +280,7 @@ export default function ProjectsSection() {
                 <button
                   className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
                   onClick={prevImage}
+                  type="button"
                 >
                   <ChevronLeft className="h-6 w-6 text-white" />
                 </button>
@@ -266,6 +288,7 @@ export default function ProjectsSection() {
                 <button
                   className="absolute right-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
                   onClick={nextImage}
+                  type="button"
                 >
                   <ChevronRight className="h-6 w-6 text-white" />
                 </button>
@@ -278,6 +301,7 @@ export default function ProjectsSection() {
                         index === currentImageIndex ? "bg-[#2d6b4f]" : "bg-white/50"
                       }`}
                       onClick={() => setCurrentImageIndex(index)}
+                      type="button"
                     />
                   ))}
                 </div>
