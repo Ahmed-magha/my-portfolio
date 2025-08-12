@@ -105,6 +105,7 @@
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    scroll-behavior: smooth; /* Improve scroll behavior for all elements */
   }
   body {
     @apply bg-background text-foreground;
@@ -132,6 +133,7 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed navbar */
 }
 
 /* Custom animations */

@@ -2,55 +2,55 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Code, Database, Brain, Globe } from "lucide-react"
+import { Code, Database, Brain, Cloud } from "lucide-react"
 
 const skillCategories = [
   {
     title: "Programming Languages",
     icon: Code,
     skills: [
-      { name: "Python", level: 95, icon: "🐍" },
-      { name: "Java", level: 85, icon: "☕" },
-      { name: "C++", level: 80, icon: "⚡" },
-      { name: "JavaScript", level: 90, icon: "🟨" },
-      { name: "TypeScript", level: 85, icon: "🔷" },
-      { name: "PHP", level: 75, icon: "🐘" },
+      { name: "Python", logo: "/python-logo.png" },
+      { name: "Java", logo: "/java-logo.png" },
+      { name: "C++", logo: "/cpp-logo.png" },
+      { name: "JavaScript", logo: "/javascript-logo.png" },
+      { name: "TypeScript", logo: "/typescript-logo.png" },
+      { name: "PHP", logo: "/php-logo.png" },
     ],
   },
   {
     title: "ML/AI Frameworks",
     icon: Brain,
     skills: [
-      { name: "TensorFlow", level: 90, icon: "🧠" },
-      { name: "PyTorch", level: 88, icon: "🔥" },
-      { name: "Scikit-learn", level: 92, icon: "📊" },
-      { name: "Keras", level: 85, icon: "🎯" },
-      { name: "OpenCV", level: 80, icon: "👁️" },
-      { name: "Hugging Face", level: 85, icon: "🤗" },
+      { name: "TensorFlow", logo: "/tensorflow-logo.png" },
+      { name: "PyTorch", logo: "/pytorch-logo.png" },
+      { name: "Scikit-learn", logo: "/placeholder-2kzzz.png" },
+      { name: "Keras", logo: "/keras-logo.png" },
+      { name: "OpenCV", logo: "/placeholder-28diq.png" },
+      { name: "Hugging Face", logo: "/hugging-face-logo.png" },
     ],
   },
   {
-    title: "Web Technologies",
-    icon: Globe,
-    skills: [
-      { name: "React", level: 88, icon: "⚛️" },
-      { name: "Next.js", level: 85, icon: "▲" },
-      { name: "Node.js", level: 82, icon: "🟢" },
-      { name: "HTML/CSS", level: 95, icon: "🎨" },
-      { name: "Tailwind CSS", level: 90, icon: "💨" },
-      { name: "FastAPI", level: 85, icon: "⚡" },
-    ],
-  },
-  {
-    title: "Databases & Cloud",
+    title: "Databases",
     icon: Database,
     skills: [
-      { name: "MySQL", level: 85, icon: "🐬" },
-      { name: "PostgreSQL", level: 80, icon: "🐘" },
-      { name: "MongoDB", level: 75, icon: "🍃" },
-      { name: "Azure", level: 82, icon: "☁️" },
-      { name: "AWS", level: 78, icon: "📦" },
-      { name: "Docker", level: 85, icon: "🐳" },
+      { name: "MySQL", logo: "/images/mysql.png" },
+      { name: "PostgreSQL", logo: "/postgresql-logo.png" },
+      { name: "MongoDB", logo: "/mongodb-logo.png" },
+      { name: "Redis", logo: "/redis-logo.png" },
+      { name: "SQLite", logo: "/sqlite-logo.png" },
+      { name: "Elasticsearch", logo: "/elasticsearch-logo.png" },
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
+    icon: Cloud,
+    skills: [
+      { name: "Azure", logo: "/placeholder-zwfwj.png" },
+      { name: "AWS", logo: "/amazon-aws-logo.png" },
+      { name: "Docker", logo: "/docker-logo.png" },
+      { name: "Kubernetes", logo: "/kubernetes-logo.png" },
+      { name: "Git", logo: "/git-logo.png" },
+      { name: "Jenkins", logo: "/jenkins-logo.png" },
     ],
   },
 ]
@@ -91,19 +91,38 @@ export default function SkillsSection() {
                 <h3 className="text-xl font-semibold text-white">{category.title}</h3>
               </div>
 
-              <div className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
                 {category.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
-                    className="relative"
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={isInView ? { x: 0, opacity: 1 } : { x: -20, opacity: 0 }}
+                    className="group flex flex-col items-center p-3 rounded-xl bg-[#0a1f14]/50 border border-[#1a4d3a]/30 hover:border-[#2d6b4f]/50 hover:bg-[#2d6b4f]/5 transition-all duration-300"
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
                     transition={{ duration: 0.4, delay: categoryIndex * 0.1 + skillIndex * 0.05 }}
+                    whileHover={{ scale: 1.05, y: -2 }}
                   >
-                    <div className="flex items-center">
-                      <span className="text-lg mr-3">{skill.icon}</span>
-                      <span className="text-gray-300 font-medium">{skill.name}</span>
+                    <div className="w-10 h-10 mb-2 rounded-lg bg-white/10 p-2 flex items-center justify-center group-hover:bg-white/20 transition-colors duration-300">
+                      <img
+                        src={skill.logo || "/placeholder.svg"}
+                        alt={`${skill.name} logo`}
+                        className="w-full h-full object-contain"
+                        onError={(e) => {
+                          // Fallback to first letter if image fails to load
+                          const target = e.target as HTMLImageElement
+                          target.style.display = "none"
+                          const parent = target.parentElement
+                          if (parent && !parent.querySelector(".fallback-text")) {
+                            const fallback = document.createElement("div")
+                            fallback.className = "fallback-text text-[#2d6b4f] font-bold text-lg"
+                            fallback.textContent = skill.name.charAt(0)
+                            parent.appendChild(fallback)
+                          }
+                        }}
+                      />
                     </div>
+                    <span className="text-gray-300 text-sm font-medium text-center group-hover:text-[#2d6b4f] transition-colors duration-300">
+                      {skill.name}
+                    </span>
                   </motion.div>
                 ))}
               </div>
@@ -111,32 +130,21 @@ export default function SkillsSection() {
           ))}
         </div>
 
-        {/* Floating Skills Animation */}
+        {/* Additional Skills Summary */}
         <motion.div
-          className="mt-16 relative h-32 overflow-hidden"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
+          className="mt-16 text-center"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
         >
-          <div className="absolute inset-0 flex items-center">
-            <motion.div
-              className="flex space-x-8 whitespace-nowrap"
-              animate={{ x: [0, -1000] }}
-              transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-            >
-              {[...skillCategories.flatMap((cat) => cat.skills), ...skillCategories.flatMap((cat) => cat.skills)].map(
-                (skill, index) => (
-                  <motion.div
-                    key={`${skill.name}-${index}`}
-                    className="flex items-center bg-[#0d2818]/30 backdrop-blur-sm rounded-full px-4 py-2 border border-[#2d6b4f]/20"
-                    whileHover={{ scale: 1.1, backgroundColor: "rgba(45, 107, 79, 0.1)" }}
-                  >
-                    <span className="text-2xl mr-2">{skill.icon}</span>
-                    <span className="text-gray-300 font-medium">{skill.name}</span>
-                  </motion.div>
-                ),
-              )}
-            </motion.div>
+          <div className="bg-[#0d2818]/30 backdrop-blur-sm rounded-2xl p-8 border border-[#1a4d3a]/50">
+            <h3 className="text-2xl font-semibold text-[#2d6b4f] mb-4">Expertise Highlights</h3>
+            <p className="text-gray-300 text-lg leading-relaxed max-w-4xl mx-auto">
+              Specialized in building end-to-end AI solutions with expertise spanning from data preprocessing and model
+              development to cloud deployment and production optimization. Experienced in both traditional machine
+              learning and cutting-edge deep learning frameworks, with a strong foundation in scalable cloud
+              architectures.
+            </p>
           </div>
         </motion.div>
       </motion.div>
