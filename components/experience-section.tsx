@@ -7,48 +7,48 @@ import { Calendar, MapPin, Award } from "lucide-react"
 const experiences = [
   {
     id: 1,
-    title: "AI Research Intern",
-    company: "OCP Group",
+    title: "BC-Skills BOT Developer Intern",
+    company: "BC-Skills Company",
     location: "Morocco",
-    period: "2024 - Present",
+    period: "2024",
     description:
-      "Developed machine learning solutions for agricultural optimization and decision support systems. Led a team of 5 engineers in creating predictive models for crop yield optimization.",
+      "Gained hands-on experience in conversational AI by designing and developing an intelligent chatbot from scratch, integrating deep learning models to enhance interaction quality and user engagement.",
     achievements: [
-      "Improved crop yield predictions by 25% using ensemble learning methods",
-      "Reduced agricultural decision-making time by 40% through automated insights",
-      "Published research on sustainable agriculture AI applications",
+      "Designed and implemented the chatbot architecture, integrating NLP models for context-aware responses",
+      "Improved conversation flow and engagement through continuous model fine-tuning",
+      "Delivered a fully functional virtual assistant deployed for internal use",
     ],
-    logo: "/placeholder.svg?height=60&width=60",
+    logo: "/logos/BCskills logo.png",
   },
   {
     id: 2,
-    title: "Machine Learning Developer",
-    company: "TechStart Solutions",
-    location: "Remote",
-    period: "2023 - 2024",
+    title: "Agricultural Decision Support Developer Intern",
+    company: "OCP Group",
+    location: "Morocco",
+    period: "2024",
     description:
-      "Built end-to-end machine learning pipelines for various client projects including computer vision, NLP, and predictive analytics solutions.",
+      "Applied data science and computer vision techniques to analyze soil data and plant images, providing personalized recommendations to optimize fertilization strategies and improve crop disease management.",
     achievements: [
-      "Delivered 8+ ML projects with 95% client satisfaction rate",
-      "Implemented real-time inference systems handling 10k+ requests/day",
-      "Mentored junior developers in ML best practices",
+      "Processed and analyzed multi-source agricultural datasets for actionable insights",
+      "Developed an ML model to detect plant diseases from images with high accuracy",
+      "Delivered a decision support tool enabling real-time recommendations for farmers",
     ],
-    logo: "/placeholder.svg?height=60&width=60",
+    logo: "/logos/OCP groupe.png",
   },
   {
     id: 3,
-    title: "Data Science Trainee",
-    company: "DataCorp Analytics",
+    title: "OCR & Multimodal AI Engineer Intern",
+    company: "Attijariwafa Bank",
     location: "Morocco",
-    period: "2023",
+    period: "2025",
     description:
-      "Gained hands-on experience in data preprocessing, statistical analysis, and machine learning model development across various industry domains.",
+      "Developed and optimized an in-house system for automatic extraction of sensitive data from complex cheque layouts, leveraging OCR models and multimodal large language models (LLMs).",
     achievements: [
-      "Completed 15+ data science projects across different domains",
-      "Achieved 90% accuracy in customer churn prediction model",
-      "Presented findings to C-level executives",
+      "Fine-tuned state-of-the-art OCR and multimodal models for bank-specific documents",
+      "Applied quantization techniques to reduce inference time on mid-resource devices",
+      "Achieved high accuracy in extracting structured data from noisy cheque images",
     ],
-    logo: "/placeholder.svg?height=60&width=60",
+    logo: "/logos/attiijari logo.png",
   },
 ]
 
@@ -92,26 +92,38 @@ export default function ExperienceSection() {
                 <div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-[#2d6b4f] rounded-full border-4 border-[#020202] z-10"></div>
 
                 {/* Content Card */}
-                <div className={`w-full md:w-5/12 ml-16 md:ml-0 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}>
+                <div className={`w-full md:w-5/12 ml-16 md:ml-0`}>
                   <motion.div
                     className="bg-[#0d2818]/50 backdrop-blur-sm rounded-2xl p-6 border border-[#1a4d3a]/50 hover:border-[#2d6b4f]/50 transition-all duration-300"
                     whileHover={{ scale: 1.02 }}
                   >
-                    <div
-                      className={`flex items-center gap-4 mb-4 ${index % 2 === 0 ? "md:flex-row-reverse" : "md:flex-row"} flex-row`}
-                    >
-                      <div className="w-12 h-12 rounded-lg bg-[#0a1f14] p-2 flex items-center justify-center">
-                        <div className="text-[#2d6b4f] font-bold text-lg">{experience.company.charAt(0)}</div>
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 rounded-lg bg-white/10 p-2 flex items-center justify-center">
+                        <img
+                          src={experience.logo || "/placeholder.svg"}
+                          alt={`${experience.company} logo`}
+                          className="w-full h-full object-contain"
+                          onError={(e) => {
+                            // Fallback to first letter if image fails to load
+                            const target = e.target as HTMLImageElement
+                            target.style.display = "none"
+                            const parent = target.parentElement
+                            if (parent && !parent.querySelector(".fallback-text")) {
+                              const fallback = document.createElement("div")
+                              fallback.className = "fallback-text text-[#2d6b4f] font-bold text-lg"
+                              fallback.textContent = experience.company.charAt(0)
+                              parent.appendChild(fallback)
+                            }
+                          }}
+                        />
                       </div>
-                      <div className={index % 2 === 0 ? "md:text-right" : "md:text-left"}>
+                      <div>
                         <h3 className="text-xl font-semibold text-white">{experience.title}</h3>
                         <p className="text-[#2d6b4f] font-medium">{experience.company}</p>
                       </div>
                     </div>
 
-                    <div
-                      className={`flex flex-wrap gap-4 mb-4 text-sm text-gray-400 ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"} justify-start`}
-                    >
+                    <div className="flex flex-wrap gap-4 mb-4 text-sm text-gray-400">
                       <div className="flex items-center gap-1">
                         <Calendar className="h-4 w-4" />
                         {experience.period}
@@ -122,27 +134,23 @@ export default function ExperienceSection() {
                       </div>
                     </div>
 
-                    <p className="text-gray-300 mb-4 leading-relaxed">{experience.description}</p>
+                    <p className="text-gray-300 mb-4 leading-relaxed text-left">{experience.description}</p>
 
                     <div className="space-y-2">
-                      <div
-                        className={`flex items-center gap-2 mb-2 ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"} justify-start`}
-                      >
+                      <div className="flex items-center gap-2 mb-2">
                         <Award className="h-4 w-4 text-[#2d6b4f]" />
                         <span className="text-[#2d6b4f] font-medium">Key Achievements</span>
                       </div>
-                      <ul
-                        className={`space-y-1 text-sm text-gray-300 ${index % 2 === 0 ? "md:text-right" : "md:text-left"} text-left`}
-                      >
+                      <ul className="space-y-1 text-sm text-gray-300 text-left">
                         {experience.achievements.map((achievement, achievementIndex) => (
                           <motion.li
                             key={achievementIndex}
                             className="flex items-start gap-2"
-                            initial={{ opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
-                            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? 20 : -20 }}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                             transition={{ duration: 0.4, delay: index * 0.2 + achievementIndex * 0.1 }}
                           >
-                            <span className="text-[#2d6b4f] mt-1">•</span>
+                            <span className="text-[#2d6b4f] mt-1 flex-shrink-0">•</span>
                             <span>{achievement}</span>
                           </motion.li>
                         ))}
