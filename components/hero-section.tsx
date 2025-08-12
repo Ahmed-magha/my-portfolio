@@ -74,6 +74,12 @@ export default function HeroSection() {
           <Button
             size="lg"
             className="bg-gradient-to-r from-[#1a4d3a] to-[#2d6b4f] hover:from-[#2d6b4f] hover:to-[#4a8b6b] text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
+            onClick={() => {
+              const link = document.createElement("a")
+              link.href = "/CV_ENG.pdf"
+              link.download = "Ahmed_Magha_CV.pdf"
+              link.click()
+            }}
           >
             <Download className="mr-2 h-5 w-5" />
             Download CV
@@ -81,7 +87,7 @@ export default function HeroSection() {
 
           <div className="flex gap-4">
             <motion.a
-              href="https://github.com"
+              href="https://github.com/Ahmed-magha"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-[#0d2818] hover:bg-[#1a4d3a] transition-colors duration-300"
@@ -92,7 +98,7 @@ export default function HeroSection() {
             </motion.a>
 
             <motion.a
-              href="https://linkedin.com"
+              href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BgW4arJxwRuaTK03OQ16m%2Bg%3D%3D"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-[#0d2818] hover:bg-[#1a4d3a] transition-colors duration-300"
@@ -103,7 +109,7 @@ export default function HeroSection() {
             </motion.a>
 
             <motion.a
-              href="mailto:ahmed@example.com"
+              href="mailto:ahmedmagha0@gmail.com"
               className="p-3 rounded-full bg-[#0d2818] hover:bg-[#1a4d3a] transition-colors duration-300"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}

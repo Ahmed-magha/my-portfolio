@@ -132,8 +132,8 @@ export default function Footer() {
                   onClick={() => {
                     // Create a dummy PDF download
                     const link = document.createElement("a")
-                    link.href = "/ahmed-magha-resume.pdf"
-                    link.download = "Ahmed_Magha_Resume.pdf"
+                    link.href = "/CV_ENG.pdf"
+                    link.download = "Ahmed_Magha_CV.pdf"
                     link.click()
                   }}
                 >
