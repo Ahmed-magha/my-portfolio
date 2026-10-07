@@ -5,11 +5,67 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import { motion, useInView, AnimatePresence } from "framer-motion"
 import { useRef } from "react"
-import { X, ChevronLeft, ChevronRight, Mail } from "lucide-react"
+import { X, ChevronLeft, ChevronRight, Mail, Lock } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 
 const projects = [
+  {
+    id: 7,
+    title: "Financial Document IDP — BNPL & KYC",
+    description:
+      "End-to-end Intelligent Document Processing for financial documents, combining OCR, NLP, and vision-language models for KYC and risk assessment.",
+    shortDesc: "IDP for BNPL, KYC, and risk assessment",
+    confidential: true,
+    image: "",
+    images: [],
+    tech: ["Python", "OCR", "NLP", "Vision-Language Models", "REST APIs"],
+    details:
+      "Designed and deployed an AI document-processing pipeline at Mala Inc for financial documents used in buy-now-pay-later. The system combines OCR, NLP, and vision-language models to extract and validate data, then feeds KYC and risk-assessment workflows through an API.",
+    timeline: "2026",
+  },
+  {
+    id: 8,
+    title: "Document Fraud Detection for eKYC",
+    description:
+      "Identity verification and fraud detection so a bank account can be opened remotely with only a national ID card.",
+    shortDesc: "eKYC fraud detection from a national ID",
+    confidential: true,
+    image: "",
+    images: [],
+    tech: ["Python", "Computer Vision", "Document Understanding", "Fraud Detection"],
+    details:
+      "Final-year project at Attijariwafa Bank. Built an identity-verification and fraud-detection solution for remote account opening, so a customer can create an account with only a national ID card instead of visiting a branch.",
+    timeline: "2026",
+  },
+  {
+    id: 9,
+    title: "Intelligent Document Classification",
+    description:
+      "Document classification and intake that routes banking and KYC documents into core systems through REST APIs.",
+    shortDesc: "Automated banking document routing",
+    confidential: true,
+    image: "",
+    images: [],
+    tech: ["Python", "Document Classification", "NLP", "REST APIs"],
+    details:
+      "Final-year project at Attijariwafa Bank. Built a classification and intake system that automates back-office and KYC document processing, routing each document accurately and integrating with core banking systems through REST APIs.",
+    timeline: "2026",
+  },
+  {
+    id: 10,
+    title: "Mass Payment Document Processing",
+    description:
+      "Document intelligence pipeline that extracts data across 30+ mass-payment formats, with benchmarking and quantization for production inference.",
+    shortDesc: "Extraction across 30+ payment formats",
+    confidential: true,
+    image: "",
+    images: [],
+    tech: ["Python", "OCR", "NLP", "Vision-Language Models", "Quantization"],
+    details:
+      "Final-year project at Attijariwafa Bank. Designed a scalable document-intelligence pipeline for mass payments, using layout-aware OCR, NLP, and vision-language models to extract data across more than 30 document formats, and optimized production inference through model benchmarking and quantization.",
+    timeline: "2026",
+  },
   {
     id: 1,
     title: "Virtual Assistant (BC-Skills BOT)",
@@ -142,6 +198,20 @@ const projects = [
   },
 ]
 
+function ConfidentialPlaceholder({ compact = false }: { compact?: boolean }) {
+  return (
+    <div
+      className={`relative w-full ${compact ? "h-48" : "h-64 md:h-80"} bg-gradient-to-br from-[#0a1f14] via-[#0d2818] to-[#1a4d3a] flex flex-col items-center justify-center gap-3`}
+    >
+      <div className="w-12 h-12 rounded-full border border-[#2d6b4f]/50 bg-[#2d6b4f]/10 flex items-center justify-center">
+        <Lock className="h-5 w-5 text-[#2d6b4f]" />
+      </div>
+      <span className="text-[#4a8b6b] text-sm font-medium tracking-wide uppercase">Confidential</span>
+      <span className="text-gray-500 text-xs px-6 text-center">Banking project — screenshots withheld</span>
+    </div>
+  )
+}
+
 // Animated Project Card Component
 function AnimatedProjectCard({ project, index, isInView, onClick }: any) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -170,7 +240,9 @@ function AnimatedProjectCard({ project, index, isInView, onClick }: any) {
       onClick={onClick}
     >
       <div className="relative overflow-hidden">
-        {project.images.length > 1 ? (
+        {project.confidential ? (
+          <ConfidentialPlaceholder compact />
+        ) : project.images.length > 1 ? (
           // Animated slideshow for projects with multiple images
           <div className="relative w-full h-48 bg-[#0d2818]">
             <AnimatePresence mode="wait">
@@ -375,14 +447,18 @@ export default function ProjectsSection() {
               </button>
 
               {/* Image Slider */}
-              <div className="relative h-64 md:h-80 overflow-hidden rounded-t-2xl">
-                <img
-                  src={selectedProject.images[currentImageIndex] || "/placeholder.svg"}
-                  alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
-                  className="w-full h-full object-contain bg-[#0d2818]"
-                />
+              <div className="relative overflow-hidden rounded-t-2xl">
+                {selectedProject.confidential ? (
+                  <ConfidentialPlaceholder />
+                ) : (
+                  <img
+                    src={selectedProject.images[currentImageIndex] || "/placeholder.svg"}
+                    alt={`${selectedProject.title} - Image ${currentImageIndex + 1}`}
+                    className="w-full h-64 md:h-80 object-contain bg-[#0d2818]"
+                  />
+                )}
 
-                {selectedProject.images.length > 1 && (
+                {!selectedProject.confidential && selectedProject.images.length > 1 && (
                   <>
                     <button
                       className="absolute left-4 top-1/2 transform -translate-y-1/2 p-2 bg-black/50 rounded-full hover:bg-black/70 transition-colors"
@@ -426,10 +502,12 @@ export default function ProjectsSection() {
                     <h4 className="text-lg font-semibold text-[#2d6b4f] mb-2">Timeline</h4>
                     <p className="text-gray-300">{selectedProject.timeline}</p>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold text-[#2d6b4f] mb-2">Team Size</h4>
-                    <p className="text-gray-300">{selectedProject.team}</p>
-                  </div>
+                  {selectedProject.team && (
+                    <div>
+                      <h4 className="text-lg font-semibold text-[#2d6b4f] mb-2">Team Size</h4>
+                      <p className="text-gray-300">{selectedProject.team}</p>
+                    </div>
+                  )}
                 </div>
 
                 <div className="mb-6">

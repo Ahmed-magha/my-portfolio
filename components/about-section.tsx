@@ -15,6 +15,10 @@ const skills = [
   "AI Engineering",
   "Computer Vision",
   "NLP",
+  "IDP",
+  "OCR",
+  "LLMs",
+  "MLOps",
   "Cloud Computing",
 ]
 
@@ -47,22 +51,22 @@ export default function AboutSection() {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <p>
-            I'm a passionate <span className="text-[#2d6b4f] font-semibold">Data & AI Engineer</span> with a fresh
-            perspective on solving complex problems through innovative machine learning solutions. My journey in
-            artificial intelligence began with a fascination for how data can tell stories and drive intelligent
-            decision-making.
+            I'm an <span className="text-[#2d6b4f] font-semibold">AI & Machine Learning Engineer</span> specialized in
+            Intelligent Document Processing for finance and banking. I turn unstructured documents into reliable
+            structured data with OCR, vision-language models, and large language models.
           </p>
 
           <p>
-            With expertise spanning from <span className="text-[#4a8b6b] font-semibold">deep learning frameworks</span>{" "}
-            to <span className="text-[#66a582] font-semibold"> cloud deployment</span>, I specialize in building
-            end-to-end AI systems that bridge the gap between research and real-world applications.
+            Most recently I worked as an AI and Risk Assessment Engineer at{" "}
+            <span className="text-[#4a8b6b] font-semibold">Mala Inc</span>, designing end-to-end document intelligence
+            for BNPL, KYC, and risk assessment. My final-year project at{" "}
+            <span className="text-[#66a582] font-semibold">Attijariwafa Bank</span> covered identity-document fraud
+            detection, document classification, and mass-payment processing.
           </p>
 
           <p>
-            I thrive on challenges that push the boundaries of what's possible with AI, whether it's developing
-            intelligent chatbots, creating computer vision solutions, or optimizing financial portfolios through
-            algorithmic trading.
+            I take models from research into production — fine-tuning, quantization, REST APIs, and on-premise
+            deployment — so they hold up in real operations, not only in a notebook.
           </p>
         </motion.div>
 

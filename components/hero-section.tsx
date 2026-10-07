@@ -51,7 +51,7 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 2, duration: 0.8 }}
           >
-            Data & AI Engineer | Machine Learning Enthusiast
+            AI & Machine Learning Engineer
           </motion.p>
 
           <motion.p
@@ -60,8 +60,8 @@ export default function HeroSection() {
             animate={{ opacity: 1 }}
             transition={{ delay: 2.5, duration: 0.8 }}
           >
-            Transforming data into intelligent solutions with cutting-edge AI technologies. Passionate about building
-            the future through machine learning and innovation.
+            I build production Intelligent Document Processing systems — OCR, vision-language models, and LLMs — and
+            take them from research through deployment for finance and banking.
           </motion.p>
         </motion.div>
 
@@ -76,7 +76,7 @@ export default function HeroSection() {
             className="bg-gradient-to-r from-[#1a4d3a] to-[#2d6b4f] hover:from-[#2d6b4f] hover:to-[#4a8b6b] text-white px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105"
             onClick={() => {
               const link = document.createElement("a")
-              link.href = "/CV_ENG.pdf"
+              link.href = "/CV_AHMED_MAGHA_updated.pdf"
               link.download = "Ahmed_Magha_CV.pdf"
               link.click()
             }}
@@ -98,7 +98,7 @@ export default function HeroSection() {
             </motion.a>
 
             <motion.a
-              href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BgW4arJxwRuaTK03OQ16m%2Bg%3D%3D"
+              href="https://www.linkedin.com/in/ahmed-magha-7b813b230"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full bg-[#0d2818] hover:bg-[#1a4d3a] transition-colors duration-300"

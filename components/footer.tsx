@@ -65,7 +65,7 @@ export default function Footer() {
                 <MapPin className="h-6 w-6 text-[#2d6b4f]" />
                 <div>
                   <p className="text-gray-400 text-sm">Location</p>
-                  <p className="text-white font-medium">Morocco</p>
+                  <p className="text-white font-medium">Morocco · Remote</p>
                 </div>
               </motion.div>
             </div>
@@ -86,7 +86,7 @@ export default function Footer() {
                 </motion.a>
 
                 <motion.a
-                  href="https://www.linkedin.com/public-profile/settings?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_self_edit_contact-info%3BgW4arJxwRuaTK03OQ16m%2Bg%3D%3D"
+                  href="https://www.linkedin.com/in/ahmed-magha-7b813b230"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="p-3 bg-[#0d2818] hover:bg-[#1a4d3a] rounded-lg border border-[#1a4d3a] hover:border-[#2d6b4f]/50 transition-all duration-300"
@@ -132,7 +132,7 @@ export default function Footer() {
                   onClick={() => {
                     // Create a dummy PDF download
                     const link = document.createElement("a")
-                    link.href = "/CV_ENG.pdf"
+                    link.href = "/CV_AHMED_MAGHA_updated.pdf"
                     link.download = "Ahmed_Magha_CV.pdf"
                     link.click()
                   }}
@@ -172,7 +172,7 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
         >
-          <p className="text-gray-400">© 2024 Ahmed Magha. Built with Next.js, Three.js, and passion for AI.</p>
+          <p className="text-gray-400">© 2026 Ahmed Magha. Built with Next.js, Three.js, and passion for AI.</p>
           <p className="text-gray-500 text-sm mt-2">
             Designed to showcase the intersection of technology and creativity.
           </p>

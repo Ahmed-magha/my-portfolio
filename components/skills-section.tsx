@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Code, Database, Brain, Cloud } from "lucide-react"
+import { Code, Database, Brain, Cloud, FileText } from "lucide-react"
 
 const skillCategories = [
   {
@@ -30,6 +30,18 @@ const skillCategories = [
     ],
   },
   {
+    title: "Document AI & LLMs",
+    icon: FileText,
+    skills: [
+      { name: "LangChain" },
+      { name: "LangGraph" },
+      { name: "LlamaIndex" },
+      { name: "PaddleOCR" },
+      { name: "Hugging Face", logo: "/logos/huggingface.png" },
+      { name: "VLMs / RAG" },
+    ],
+  },
+  {
     title: "Databases",
     icon: Database,
     skills: [
@@ -51,6 +63,9 @@ const skillCategories = [
       { name: "Kubernetes", logo: "/logos/kubernetes.png" },
       { name: "Git", logo: "/logos/GIT.png" },
       { name: "Jenkins", logo: "/logos/jenkins.png" },
+      { name: "GCP" },
+      { name: "FastAPI" },
+      { name: "MLflow" },
     ],
   },
 ]
@@ -76,7 +91,7 @@ export default function SkillsSection() {
           Technical Skills
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.title}
@@ -102,23 +117,26 @@ export default function SkillsSection() {
                     whileHover={{ scale: 1.05, y: -2 }}
                   >
                     <div className="w-10 h-10 mb-2 rounded-lg bg-white/10 p-2 flex items-center justify-center group-hover:bg-white/20 transition-colors duration-300">
-                      <img
-                        src={skill.logo || "/placeholder.svg"}
-                        alt={`${skill.name} logo`}
-                        className="w-full h-full object-contain"
-                        onError={(e) => {
-                          // Fallback to first letter if image fails to load
-                          const target = e.target as HTMLImageElement
-                          target.style.display = "none"
-                          const parent = target.parentElement
-                          if (parent && !parent.querySelector(".fallback-text")) {
-                            const fallback = document.createElement("div")
-                            fallback.className = "fallback-text text-[#2d6b4f] font-bold text-lg"
-                            fallback.textContent = skill.name.charAt(0)
-                            parent.appendChild(fallback)
-                          }
-                        }}
-                      />
+                      {skill.logo ? (
+                        <img
+                          src={skill.logo}
+                          alt={`${skill.name} logo`}
+                          className="w-full h-full object-contain"
+                          onError={(e) => {
+                            const target = e.target as HTMLImageElement
+                            target.style.display = "none"
+                            const parent = target.parentElement
+                            if (parent && !parent.querySelector(".fallback-text")) {
+                              const fallback = document.createElement("div")
+                              fallback.className = "fallback-text text-[#2d6b4f] font-bold text-lg"
+                              fallback.textContent = skill.name.charAt(0)
+                              parent.appendChild(fallback)
+                            }
+                          }}
+                        />
+                      ) : (
+                        <span className="text-[#2d6b4f] font-bold text-lg">{skill.name.charAt(0)}</span>
+                      )}
                     </div>
                     <span className="text-gray-300 text-sm font-medium text-center group-hover:text-[#2d6b4f] transition-colors duration-300">
                       {skill.name}
@@ -140,10 +158,9 @@ export default function SkillsSection() {
           <div className="bg-[#0d2818]/30 backdrop-blur-sm rounded-2xl p-8 border border-[#1a4d3a]/50">
             <h3 className="text-2xl font-semibold text-[#2d6b4f] mb-4">Expertise Highlights</h3>
             <p className="text-gray-300 text-lg leading-relaxed max-w-4xl mx-auto">
-              Specialized in building end-to-end AI solutions with expertise spanning from data preprocessing and model
-              development to cloud deployment and production optimization. Experienced in both traditional machine
-              learning and cutting-edge deep learning frameworks, with a strong foundation in scalable cloud
-              architectures.
+              Specialized in Intelligent Document Processing and production AI: OCR, vision-language models, and LLMs
+              for financial and banking documents, from model development and quantization through APIs and on-premise
+              deployment.
             </p>
           </div>
         </motion.div>

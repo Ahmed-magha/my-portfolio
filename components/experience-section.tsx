@@ -7,6 +7,36 @@ import { Calendar, MapPin, Award } from "lucide-react"
 const experiences = [
   {
     id: 1,
+    title: "AI and Risk Assessment Engineer",
+    company: "Mala Inc",
+    location: "Riyadh, Saudi Arabia (Remote)",
+    period: "2026",
+    description:
+      "Designed and deployed end-to-end Intelligent Document Processing for financial documents used in BNPL, combining OCR, NLP, and vision-language models to automate KYC and risk assessment.",
+    achievements: [
+      "Automated data extraction and validation across financial documents for KYC and risk workflows",
+      "Integrated the pipeline with downstream systems through APIs, improving operational efficiency and data quality",
+      "Combined OCR, NLP, and vision-language models into a single production document-understanding flow",
+    ],
+    logo: "/logos/mala.jpg",
+  },
+  {
+    id: 2,
+    title: "AI Engineer Intern — Final Year Project",
+    company: "Attijariwafa Bank",
+    location: "Casablanca, Morocco",
+    period: "2026",
+    description:
+      "Built AI systems for remote bank account opening and back-office document processing: identity verification, document classification, and a mass-payment extraction pipeline.",
+    achievements: [
+      "Developed an eKYC fraud-detection pipeline so customers can open an account with only a national ID card",
+      "Built an intelligent document classification and intake system that routes banking and KYC documents into core systems via REST APIs",
+      "Designed a mass-payment document intelligence pipeline covering 30+ formats, with layout-aware OCR, NLP, vision-language models, benchmarking, and quantization",
+    ],
+    logo: "/logos/attijari logo.png",
+  },
+  {
+    id: 3,
     title: "OCR & Multimodal AI Engineer Intern",
     company: "Attijariwafa Bank",
     location: "Morocco",
@@ -21,7 +51,7 @@ const experiences = [
     logo: "/logos/attijari logo.png",
   },
   {
-    id: 2,
+    id: 4,
     title: "Agricultural AI & Computer Vision Intern",
     company: "OCP Group",
     location: "Morocco",
@@ -36,7 +66,7 @@ const experiences = [
     logo: "/logos/OCP_Group.png",
   },
   {
-    id: 3,
+    id: 5,
     title: "BC-Skills NLP Chatbot Developer Intern",
     company: "BC-Skills Company",
     location: "Morocco",

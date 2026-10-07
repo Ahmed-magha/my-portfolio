@@ -6,7 +6,7 @@ import "./globals.css"
 
 export const metadata: Metadata = {
   title: "Ahmed Magha Portfolio",
-  description: "Data & AI Engineer | Machine Learning Enthusiast - Portfolio showcasing AI projects and expertise",
+  description: "AI & Machine Learning Engineer - Portfolio showcasing Intelligent Document Processing, LLMs, and production AI work",
   generator: "v0.dev",
 }
 
